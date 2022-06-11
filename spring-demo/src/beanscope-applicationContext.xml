@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- Load the properties file -->
+	<context:property-placeholder location="classpath:sport.properties"/>
+    <!-- Define your beans here -->
+    <!-- The fortune service this will act as dependency -->
+    <bean id="myFortune" class="com.aka.demo.HappyFortuneService"></bean>
+    
+    <!-- The bean of the implemented class -->
+    <!-- By default the scope is singleton which means that the scope is 
+    	create the one instance for all the object.
+    	whereas the prototype scope will create a new instance every time.
+     -->
+    <bean id="myCoach" class="com.aka.demo.TrackCoach" scope="prototype">
+    	<!-- Constructor injection -->
+    	<constructor-arg ref="myFortune"></constructor-arg>
+    </bean>
+</beans>
+
+
+
+
+
